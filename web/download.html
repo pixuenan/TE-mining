@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<style>
+.legend{
+        border='1';
+	margin-left:10px; 
+	margin-right:auto;
+}
+</style>
+<link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.css">
+<script src="jquery-ui-1.11.4/external/jquery/jquery.js" type="text/javascript"></script>
+<script src="jquery-ui-1.11.4/jquery-ui.js" type="text/javascript"></script>
+
+<title>Transposon</title>
+
+</head>
+
+<body>
+<div>
+<table border='1' width='100%'>
+    <tr><th>Transposon name</td><td>Transposon sequence</td><td>LTR length</td><td>Selected transposon copy length range</td><td>Result tsv file</td><td>Result table web view</td></th>
+    <tr><td>Rider</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/Rider.fasta">Rider.fasta</a></td><td>400 bp</td><td>400bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/Rider_16gn.tsv">Rider.tsv</a></td><td><a href="./download/Rider.html">Rider_16 web</a></td></tr>
+    <tr><td>Jinling</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/Jinling.fasta">Jinling.fasta</a><td>1800 bp</td></td><td>1.8kb-14kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/Jinling_4gn.tsv">Jinling.tsv</a></td><td><a href="./download/Jinling.html">Jinling_4 web</a></td></tr>
+    <tr><td>TARE1</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/TARE1.fasta">TARE1.fasta</a></td><td>136 bp</td><td>100bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/TARE1_4gn.tsv">TARE1.tsv</a></td><td><a href="./download/TARE1.html">TARE1_4 web</a></td></tr>
+    <tr><td>TGRE1</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/TGRE1.fasta">TGRE1.fasta</a></td><td>129 bp</td><td>100bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/TGRE1_4gn.tsv">TGRE1.tsv</a></td><td><a href="./download/TGRE1.html">TGRE1_4 web</a></td></tr>
+    <tr><td>SL_RT_F159</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F159.fasta">SL_RT_F159.fasta</a></td><td>425 bp</td><td>400bp-4kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F159_16gn.tsv">SL_RT_F159.tsv</a></td><td><a href="./download/SL_RT_F159.html">SL_RT_F159_16 web</a></td></tr>
+    <tr><td>SL_RT_F108</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F108.fasta">SL_RT_F108.fasta</a></td><td>275 bp</td><td>250b-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F108_4gn.tsv">SL_RT_F108.tsv</a></td><td><a href="./download/SL_RT_F108.html">SL_RT_F108_4 web</a></td></tr>
+    <tr><td>SL_RT_F120</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F120.fasta">SL_RT_F120.fasta</a></td><td>859 bp</td><td>800bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F120_4gn.tsv">SL_RT_F120.tsv</a></td><td><a href="./download/SL_RT_F120.html">SL_RT_F120_4 web</a></td></tr>
+    <tr><td>SL_RT_F132(ToRTL1)</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F132.fasta">SL_RT_F132.fasta</a></td><td>812 bp</td><td>800bp-14kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F132_4gn.tsv">SL_RT_F132.tsv</a></td><td><a href="./download/SL_RT_F132.html">SL_RT_F132_4 web</a></td></tr>
+    <tr><td>SL_RT_F164(T135)</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F164.fasta">SL_RT_F164.fasta</a></td><td>735 bp</td><td>700bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F164_4gn_4000_10000.tsv">SL_RT_F164.tsv</a></td><td><a href="./download/SL_RT_F164.html">SL_RT_F164_4 web</a></td></tr>
+    <tr><td>SL_RT_F17</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F17.fasta">SL_RT_F17.fasta</a></td><td>3279 bp</td><td>3.2kb-16kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F17_16gn.tsv">SL_RT_F17.tsv</a></td><td><a href="./download/SL_RT_F17.html">SL_RT_F17_16 web</a></td></tr>
+    <tr><td>SL_RT_F170(Tnt1)</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F170.fasta">SL_RT_F170.fasta</a></td><td>630 bp</td><td>600bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F170.tsv">SL_RT_F170.tsv</a></td><td><a href="./download/SL_RT_F170.html">SL_RT_F170_4 web</a></td></tr>
+    <tr><td>SL_RT_F272</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F272.fasta">SL_RT_F272.fasta</a></td><td>283 bp</td><td>250bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F272_4gn.tsv">SL_RT_F272.tsv</a></td><td><a href="./download/SL_RT_F272.html">SL_RT_F272_4 web</a></td></tr>
+    <tr><td>SL_RT_F274</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F274.fasta">SL_RT_F274.fasta</a></td><td>266 bp</td><td>200bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F274_4gn.tsv">SL_RT_F274.tsv</a></td><td><a href="./download/SL_RT_F274.html">SL_RT_F274_4 web</a></td></tr>
+    <tr><td>SL_RT_F50</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F50.fasta">SL_RT_F50.fasta</a></td><td>275 bp</td><td>250bp-10kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F50_4gn.tsv">SL_RT_F50.tsv</a></td><td><a href="./download/SL_RT_F50.html">SL_RT_F50_4 web</a></td></tr>
+    <tr><td>SL_RT_F94</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/transposon/SL_RT_F94.fasta">SL_RT_F94.fasta</a></td><td>1554 bp</td><td>1.5kb-20kb</td><td><a id="download" href="http://myers.bioinformatics.nl/transposon/download/tipTABLE/mobility/SL_RT_F94_4gn.tsv">SL_RT_F94.tsv</a></td><td><a href="./download/SL_RT_F94.html">SL_RT_F94_4 web</a></td></tr>
+</table>
+</div>
+<script type="text/javascript">
+
+$('#download').click();
+
+</script>
+
+</body>
+
+</html>

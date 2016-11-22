@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body{
+margin: 30px auto;
+width: 2000px;
+height: 100px;
+margin-top: 120px;
+}
+.sort_table{
+	margin-left:10px; 
+	margin-right:auto;
+}
+.sort_table td, th, tr{
+border: solid 1px grey;
+padding: 3px;
+text-align: center;
+height: 50px;
+top:150px;
+ }
+.sort_table tr:nth-child(even)
+{background-color:#eee;}
+.sort_table tr:nth-child(odd)
+{background-color:#fff;}
+.note {
+position: absolute;
+background-color:white;
+left: 0;
+top:0;
+width: 1000px;
+height: 100px;}
+.legend {
+position: absolute;
+background-color:white;
+top:10px;
+margin-left: 1000px;
+height: 100px;}
+
+
+</style>
+<html>
+<head>
+<script src="http://myers.bioinformatics.nl/transposon/d3.js"  type="text/javascript" charset='utf-8'></script>
+<script src="http://myers.bioinformatics.nl/transposon/d3-legend/d3-legend.js" type="text/javascript" charset='utf-8'></script>
+
+     </head>
+     <body>  
+     <p class="note">
+     <pre class="note">
+          Note:
+          Column "type":
+          "copy"-transposon location that is shared between reference genome and accessions
+          "Ngap"-transposon location that is shared between reference genome and accessions and within an assembly gap (NNNNNNs) 
+          "insertion"-transposon location that is unique for the accessions
+     </pre></p>
+     <div id="legend" class="legend"></div>
+<table class="sort_table">
+    <thead></thead>
+    <tbody></tbody>
+</table>
+
+  <script type="text/javascript">
+
+var ordinal = d3.scale.ordinal()
+  .domain(["absence","presence","absence unconfirmed","absence confirmed"])
+  .range(["#C4FFC8","#FFB266","#FFE5CC","#B2FF66"]);
+
+var svg = d3.select("#legend").append("svg");
+
+svg.append("g")
+  .attr("class", "legendOrdinal")
+  .attr("transform", "translate(20,20)");
+
+var legendOrdinal = d3.legend.color()
+  .shapeWidth(40)
+  .scale(ordinal);
+
+svg.select(".legendOrdinal")
+    .call(legendOrdinal);
+
+var data = [];
+d3.text("tipTABLE/mobility/trantransposon_name_4gn.tsv",function(dataset){
+        data = d3.tsv.parse(dataset);
+transform('shared_num');
+        });
+function transform(attrName) {
+    d3.select("tbody").selectAll("tr").remove();
+
+// Header
+    var th = d3.select("thead").selectAll("th")
+            .data(jsonToArray(data[0]))
+          .enter().append("th")
+            .attr("onclick", function (d, i) { return "transform('" + d[0] + "');";})
+            .text(function(d) { return d[0]; })
+
+// Rows
+    var tr = d3.select("tbody").selectAll("tr")
+            .data(data)
+          .enter().append("tr")
+            .sort(function (a, b) { return a == null || b == null ? 0 : stringCompare(a[attrName], b[attrName],attrName); });
+
+// Cells
+    var td = tr.selectAll("td")
+            .data(function(d) { return jsonToArray(d);})
+          .enter().append("td")
+          .on("click", function (d) {if (d[0]=="id"){
+            window.open(d[1][1]+"&highlight=")}})
+          .style("background-color",function(d){if (d[0].indexOf("rf")!=-1){ if (d[1]=="0"){return "#C4FFC8"}
+          else if (d[1]=="1"){return "#FFB266"}
+          else if (d[1]=="unconfirmed"){return "#FFE5CC"}
+          else if (d[1]=="confirmed"){return "#B2FF66"}}})
+          .attr("width",function(d){if (d[0]=='Remarks'||d[0]=='locus_name/description'){return 30}})
+
+          .text(function(d) { if (d[0]=="id"){return d[1][0];}else if(d[0].indexOf("rf")==-1){return d[1];} })
+
+}
+
+function stringCompare(a, b,attrName) {
+    if (attrName=='distance' || attrName=='id' || attrName=='shared_num'){
+    e = parseInt(a);
+    f = parseInt(b);
+    return e > f ? 1 : e == f ? 0 : -1;
+    }
+    else {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+    return a < b ? 1 : a == b ? 0 : -1;
+    }
+}
+function jsonKeyValueToArray(k, v) {return [k, v];}
+
+function jsonToArray(json) {
+    var ret = new Array();
+    var key;
+    for (key in json) {
+        if (json.hasOwnProperty(key)) {
+            ret.push(jsonKeyValueToArray(key, json[key]));
+        }
+    }
+    return ret;
+}
+    </script>
+      </body>
+      </html>
